@@ -72,19 +72,19 @@ Follow (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEven
     ```
     {
     "Version": "2012-10-17",
-    "Id": "arn:aws:sqs:ap-southeast-1:445897275450:test-cron-cloudwatch-event/SQSDefaultPolicy",
+    "Id": "someid",
     "Statement": [
         {
-        "Sid": "AWSEvents_test_cronjob_test_job_4c7b918a-10eb-4f9b-b275-48bf6a3980b9",
+        "Sid": "somesid",
         "Effect": "Allow",
         "Principal": {
             "Service": "events.amazonaws.com"
         },
         "Action": "sqs:SendMessage",
-        "Resource": "arn:aws:sqs:ap-southeast-1:445897275450:test-cron-cloudwatch-event",
+        "Resource": "queue arn",
         "Condition": {
             "ArnLike": {
-            "aws:SourceArn": "arn:aws:events:ap-southeast-1:445897275450:rule/test_cronjob*"
+            "aws:SourceArn": "rolearn:rule/jobprefix*"
             }
         }
         }
