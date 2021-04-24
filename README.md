@@ -1,18 +1,24 @@
 # cron-events-service
 
+# Where can this be used
+
+- To schedule one time event
+- To schedule a recursive event
+- When you need a quick schedular service and do not want to use any kind of database. And the number of evets that you are targetting is not extremely high. 
+
+```
+Total cost of cloudwatch events is $1 per 1 million events
+```
+
 ## Implementaion
 
-Production Queue Name: production-cron-cloudwatch-event
-Test Queue Name: test-cron-cloudwatch-event
-
-- Create a webserver with same api url's available in current cron service
 - On create job api 
 	- Create a new cloudwatch event using interval key
 	- Select target as SQS `test-cron-cloudwatch-event`
 	- Set message body as requested in the api which looks similar to this, just add a prefix to the name with environment_cron_job_ (This will help us filter cron jobs in cloudwatch events) 
 	```
 		{
-	    "name": "couch_migration_script",
+	    "name": "some_script",
 	    "type": "repeat",
 	    "callbackUrl": "https://google.com",
 	    "queue": "queue_url",
@@ -28,7 +34,7 @@ Test Queue Name: test-cron-cloudwatch-event
   - Only if the type key in the message set as single, then delete the `event` from  cloudwatch using name key
   - Delete message from the queue
 
-Total cost of cloudwatch events is $1 per 1 million events
+
 
 ## Usage (Repeated Tasks)
 
