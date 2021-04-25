@@ -19,14 +19,14 @@ Total cost of cloudwatch events is $1 per 1 million events
 	```
 		{
 	    "name": "some_script",
-	    "type": "repeat",
+	    "type": "repeat", // Repeat for recursive and single for one time job
 	    "callbackUrl": "https://google.com",
 	    "queue": "queue_url",
 	    "topic": "topic_arn",
 	    "payload": {
 	        "status": "yes"
 	    },
-	    "interval": "120000",	    
+	    "interval": "120000", // This is in micro seconds. In case of sinle job use micro seconds and incase of repeat use cron expression	    
 	}
 	```
 - Create a consumer in the same service for queue `test-cron-cloudwatch-event`	
